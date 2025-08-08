@@ -1,0 +1,158 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Hero Training Tycoon</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+    <div id="gameContainer">
+        <!-- Top UI Bar -->
+        <div id="topBar">
+            <div class="resource-display">
+                <div class="resource-item">
+                    <img src="coin-icon.png" alt="Coins" class="resource-icon">
+                    <span id="coinCount">1000</span>
+                </div>
+                <div class="resource-item">
+                    <img src="gem-icon.png" alt="Gems" class="resource-icon">
+                    <span id="gemCount">50</span>
+                </div>
+                <div class="resource-item">
+                    <img src="exp-icon.png" alt="Experience" class="resource-icon">
+                    <span id="expCount">0</span>
+                </div>
+            </div>
+            <div class="level-display">
+                <span>Level <span id="playerLevel">1</span></span>
+            </div>
+        </div>
+
+        <!-- Main Game Area -->
+        <div id="gameContent">
+            <!-- Left Panel - Heroes -->
+            <div id="leftPanel" class="game-panel">
+                <div class="panel-header">
+                    <img src="heroes-icon.png" alt="Heroes" class="panel-icon">
+                    <h2>Heroes</h2>
+                </div>
+                <div id="heroList" class="hero-container">
+                    <!-- Heroes will be dynamically added here -->
+                </div>
+                <div class="panel-actions">
+                    <button id="recruitBtn" class="action-btn primary">
+                        <img src="recruit-icon.png" alt="Recruit" class="btn-icon">
+                        Recruit Hero (500 coins)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Center Panel - Training Grounds -->
+            <div id="centerPanel" class="game-panel">
+                <div class="panel-header">
+                    <img src="training-icon.png" alt="Training" class="panel-icon">
+                    <h2>Training Grounds</h2>
+                </div>
+                <div id="trainingArea">
+                    <div class="training-slots">
+                        <div class="training-slot" id="slot1">
+                            <div class="slot-empty">Empty Training Slot</div>
+                        </div>
+                        <div class="training-slot" id="slot2">
+                            <div class="slot-empty">Empty Training Slot</div>
+                        </div>
+                        <div class="training-slot" id="slot3">
+                            <div class="slot-empty">Empty Training Slot</div>
+                        </div>
+                    </div>
+                    <div class="training-controls">
+                        <button id="startTrainingBtn" class="action-btn secondary" disabled>
+                            <img src="train-icon.png" alt="Train" class="btn-icon">
+                            Start Training
+                        </button>
+                        <button id="autoTrainerBtn" class="action-btn secondary">
+                            <img src="auto-icon.png" alt="Auto Trainer" class="btn-icon">
+                            Auto Trainer: OFF
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Battle -->
+            <div id="rightPanel" class="game-panel">
+                <div class="panel-header">
+                    <img src="battle-icon.png" alt="Battle" class="panel-icon">
+                    <h2>Battle Arena</h2>
+                </div>
+                <div id="battleArea">
+                    <div class="battle-info">
+                        <div class="enemy-display">
+                            <img src="enemy-icon.png" alt="Enemy" class="enemy-icon">
+                            <div class="enemy-stats">
+                                <div>Enemy Level: <span id="enemyLevel">1</span></div>
+                                <div>Reward: <span id="battleReward">100</span> coins</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="battle-controls">
+                        <button id="battleBtn" class="action-btn danger" disabled>
+                            <img src="sword-icon.png" alt="Battle" class="btn-icon">
+                            Send to Battle
+                        </button>
+                        <button id="autoBtn" class="action-btn secondary">
+                            <img src="auto-icon.png" alt="Auto" class="btn-icon">
+                            Auto Battle: OFF
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom UI - Upgrades -->
+        <div id="bottomBar">
+            <div class="upgrade-section">
+                <button class="upgrade-btn" id="upgradeTraining">
+                    <img src="upgrade-icon.png" alt="Upgrade" class="upgrade-icon">
+                    <div class="upgrade-info">
+                        <div class="upgrade-title">Training Speed +10%</div>
+                        <div class="upgrade-cost">Cost: 2000 coins</div>
+                    </div>
+                </button>
+                <button class="upgrade-btn" id="upgradeRewards">
+                    <img src="reward-icon.png" alt="Rewards" class="upgrade-icon">
+                    <div class="upgrade-info">
+                        <div class="upgrade-title">Battle Rewards +25%</div>
+                        <div class="upgrade-cost">Cost: 1500 coins</div>
+                    </div>
+                </button>
+                <button class="upgrade-btn" id="upgradeSlots">
+                    <img src="slots-icon.png" alt="Slots" class="upgrade-icon">
+                    <div class="upgrade-info">
+                        <div class="upgrade-title">Training Slots +1</div>
+                        <div class="upgrade-cost">Cost: 5000 coins</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Battle Animation Overlay -->
+        <div id="battleOverlay" class="battle-overlay hidden">
+            <div class="battle-animation">
+                <div class="battle-text">⚔️ Battle in Progress ⚔️</div>
+                <div class="battle-progress">
+                    <div class="progress-bar">
+                        <div id="battleProgressBar" class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
